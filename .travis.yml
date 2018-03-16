@@ -1,0 +1,15 @@
+language: node_js
+before_install:
+- openssl aes-256-cbc -k "$super_secret_password" -in se234.pem.enc -out se234.pem
+  -d
+- sudo chmod 400 se234.pem
+install: true
+script: true
+after_success:
+- scp -i "se234.pem" -r html/* ubuntu@54.255.174.42:/var/www/html/
+addons:
+  ssh_known_hosts:
+  - 54.255.174.42
+env:
+  global:
+    secure: o7sQz2S0ODWsibPAzDXFMYO9gbQDwdEvsDZNIzdRyVxjQV7/lPNBai/ef9YAuHWZ9s6vLIWXVFa8aX6DIzUjWiPpRMRsciCYRHy/LR6Frl5X+NZP0MiwtX22BpK6XcYH9jYw7O8TOnTkLA783w4Fsdt2zORFAkfD9G2OJihykx3HH0QgHMdKufxxDaufM6kJp3GyzZ33KDFE/Ni72/Zy2jikKdo0kEHq0bIBHsy1TE1dAjYYKG3H4LoRDONN5WWxUSWcFRDsKBOk4o6dtQEw7irsCbBKGmZjELwYt8b7uYo9xfDFleLDaxTaBw1cPIktNO1DxaWxQwPd+Y4dWNC9RWxN3Onk0a8d7U5CZ+VF5M5C8kWuedfkiwJTSZl9FThOJXg5+puj+UmKRVWjEBIeNc7fJfQ8sXanV/luN+jUI7w8bqL+K/QwHofU39xAOBEdDlVifaonknMUBXk0iWZj6p+PXV/KVjKZJsrbTcNfSo0BNga34t67OlutjOgYOL9KiILNwpuAHqCoixBhyyHFL9cU/P1EGO1CKgrsb95KqqbEfjY5ghnW5kCYVe4Cn567/2JJlbRio7PpqNWyeYGZgZj2mK8cbF1goI4Fxl+aOH4rt1F3kr8C9pcqp9KPr6GpamYQO564jJk19SBqzHgtnm0wYkWfWNrrJbGIOQ9tK0c=
