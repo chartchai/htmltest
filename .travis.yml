@@ -10,7 +10,7 @@ script:
 - docker build -t dto80/htmltest .
 - docker push dto80/htmltest 
 after_success:
-- docker run -p 8888:80 -h $HOST_NAME -d dto80/htmltest
+- docker run -p 8088:80 -h $HOST_NAME -d dto80/htmltest
 
 service: docker
 env:
