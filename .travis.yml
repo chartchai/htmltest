@@ -4,12 +4,12 @@ before_install:
 - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 install: true
 before_script:
-- export DOCKER_HOST="tcp://172.16.62.130:2376"
+- export DOCKER_HOST="$HOST_NAME"
 script:
 - docker build -t dto80/htmltest .
 - docker push dto80/htmltest
 after_success:
-- docker run -p 8088:80 -h $HOST_NAME -d dto80/htmltest:latest
+- docker run -p 8088:80 -d dto80/htmltest:latest
 service: docker
 env:
   global:
