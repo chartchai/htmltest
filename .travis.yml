@@ -3,6 +3,8 @@ sudo: required
 before_install:
 - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 install: true
+before_script:
+- export DOCKER_HOST="tcp://172.16.62.130:2376"
 script:
 - docker build -t dto80/htmltest .
 - docker push dto80/htmltest
