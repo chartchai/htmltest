@@ -7,8 +7,8 @@ install: true
 
 
 script:
-- docker build -t dto80/htmltest
-- docker push dto80/htmltest
+- docker build -t dto80/htmltest .
+- docker push dto80/htmltest 
 after_success:
 - docker run -p 8888:80 -h $HOST_NAME dto80/htmltest -d
 
